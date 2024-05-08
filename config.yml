@@ -1,0 +1,4 @@
+folium_maps:
+  xyz_tiles_name: # replace with the tile provider of your choice from https://xyzservices.readthedocs.io/en/stable/gallery.html
+  tiles_api_key: # api_key for your favorite Folium tiles provider (ThunderForest Outdoors is generally recommendable)
+
