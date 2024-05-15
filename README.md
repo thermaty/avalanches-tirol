@@ -53,15 +53,20 @@ The entire process of creating the dataset is documented in the Jupyter notebook
 * `setup.sh` - Setup script for configuring the environment and installing necessary dependencies.
   
 ## Setup Guide
-Before running the setup script, make sure that you have GDAL and Python development bindings installed. On Fedora you can install them with:
+Before running the setup script, ensure that you have GDAL and Python development bindings installed. On Fedora, you can install them with the following command:
+
 ```bash
 sudo dnf install gdal python3-devel -y
 ```
-For other distributions or systems, see their installation guide [here](https://gdal.org/download.html).
 
-On GNU/Linux you can setup use the setup script, that will create a Python virtual environment, download all the necessary packages and download and extract the DEM file that is used for data preprocessing. You can run it like this:
+For other distributions or systems, refer to their installation guide [here](https://gdal.org/download.html).
+
+On GNU/Linux, you can use the setup script to set up the environment. This script creates a Python virtual environment, installs all necessary packages, and downloads and extracts the DEM file used for data preprocessing. Run the script as follows:
+
 ```bash
 ./setup.sh [-n]
 ```
+
 The `-n` flag is optional and you can use it when you don't want to download the DEM file.
 
+For browsing the entire `pandas.DataFrame`s an IDE with builtin support such as PyCharm, Spyder or Visual Studio Code is recommended.
