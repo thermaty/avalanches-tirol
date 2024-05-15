@@ -32,8 +32,6 @@ pip3 install --no-cache-dir -r requirements.txt
 pip3 install --no-build-isolation --no-cache-dir --force-reinstall GDAL=="$(gdal-config --version)"
 
 
-
-
 if [ "$SKIP_DEM" = false ]; then
    mkdir -p "$DEST_FOLDER"
    echo "Downloading the DEM model."
