@@ -14,6 +14,16 @@ rng = np.random.default_rng()
 
 def fetch_event_overview(start_date="1970-01-01", end_date=datetime.today().strftime('%Y-%m-%d'), output_dir='data',
                          save=True, api="incident"):
+    """
+    Fetches an overview of events from a specified LAWIS API (incidents, profiles, measurements) within a given date range and optionally saves it as a JSON file.
+
+    :param start_date: Start date for the event overview in the format 'YYYY-MM-DD' (default: '1970-01-01').
+    :param end_date: End date for the event overview in the format 'YYYY-MM-DD' (default: current date as str).
+    :param output_dir: Directory where the JSON file will be saved (default: 'data').
+    :param save: Whether to save the fetched event overview as a JSON file (default: True).
+    :param api: Name of the API endpoint to fetch the event overview from (default: 'incident').
+    :return: DataFrame containing the fetched event overview.
+    """
     headers = {'accept': 'application/json'}
     try:
         response = requests.get(f'https://lawis.at/lawis_api/v2_2/{api}/?startDate={start_date}&endDate={end_date}',
@@ -31,6 +41,14 @@ def fetch_event_overview(start_date="1970-01-01", end_date=datetime.today().strf
 
 
 def fetch_events_details(event_ids, api, output_dir):
+    """
+    Fetches details of events with specified IDs from a given LAWIS API endpoint and saves them as JSON files.
+
+    :param event_ids: List or iterable of event IDs to fetch details for.
+    :param api: Name of the API endpoint to fetch event details from.
+    :param output_dir: Directory where the JSON files will be saved.
+    :return: DataFrame containing the details of the fetched events.
+    """
     session = retry(Session(), retries=5, backoff_factor=0.3)
     success = 0
     new_events = 0
@@ -58,6 +76,12 @@ def fetch_events_details(event_ids, api, output_dir):
 
 
 def load_events_to_dataframe(data_folder):
+    """
+    Loads LAWIS API JSON responses from a specified folder and normalizes them into a DataFrame.
+
+    :param data_folder: Path to the folder containing JSON files.
+    :return: DataFrame containing the normalized loaded JSON data.
+    """
     data = []
     for file_path in Path(data_folder).glob('*.json'):
         if file_path.is_file():
